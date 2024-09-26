@@ -27,7 +27,7 @@ zinit load zdharma-continuum/history-search-multi-word
 zinit light zdharma-continuum/fast-syntax-highlighting
 zinit light zsh-users/zsh-autosuggestions
 zinit light zsh-users/zsh-completions
-
+# zinit light jeffreytse/zsh-vi-mode
 
 zinit snippet https://gist.githubusercontent.com/hightemp/5071909/raw/
 zinit snippet OMZP::git
@@ -92,6 +92,9 @@ export FZF_ALT_C_OPTS="
 
 export FZF_COMPLETION_TRIGGER='...'
 
+# setting default editor to vi mode
+export ZVM_VI_EDITOR=nvim
+
 # autocompletions
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 # disable sort when completing `git checkout`
@@ -126,8 +129,29 @@ alias of="fd --type f --hidden --exclude .git | \
 
 alias -g -- -h='-h 2>&1 | bat --language=help --style=plain'
 alias -g -- --help='--help 2>&1 | bat --language=help --style=plain'
-alias get_idf='. $HOME/esp/v5.3/esp-idf/export.sh'
 
+# for multiple idf versions
+get_idf() {
+  IDF_VERSION="$1"
+  IDF_PATH="$HOME/esp/$1/esp-idf"
+
+  if [ -z "$1" ]; then
+      echo "Usage: give one of the idf version"
+      ls -D "$HOME/esp"
+      return 1
+  fi
+
+  if [ -d $IDF_PATH ]; then
+    echo "Setting version to: $IDF_VERSION"
+    sleep 2
+    source "$HOME/esp/$1/esp-idf/export.sh"
+
+  else
+    echo "$IDF_PATH does not exists"
+    return 1
+  
+  fi
+}
 
 # nvm settings
 export NVM_DIR="$HOME/.nvm"
