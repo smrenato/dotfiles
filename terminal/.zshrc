@@ -27,14 +27,6 @@ zinit load zdharma-continuum/history-search-multi-word
 zinit light zdharma-continuum/fast-syntax-highlighting
 zinit light zsh-users/zsh-autosuggestions
 zinit light zsh-users/zsh-completions
-# zinit light jeffreytse/zsh-vi-mode
-
-zinit snippet https://gist.githubusercontent.com/hightemp/5071909/raw/
-zinit snippet OMZP::git
-# zinit snippet OMZP::tmux
-# zinit snippet OMZP::docker
-zinit snippet OMZP::command-not-found
-
 
 # history settings
 # HISTORY
@@ -112,7 +104,7 @@ zstyle ':fzf-tab:complete:cd:*' fzf-preview 'eza -1 --color=always $realpath'
 zstyle ':fzf-tab:*' switch-group '<' '>'
 
 #  miscellaneous
-export PATH="/home/smrenato/.local/bin:$PATH"
+export PATH="/.local/bin:$PATH"
 
 # bat 
 export BAT_THEME="Dracula"
@@ -153,10 +145,39 @@ get_idf() {
   fi
 }
 
+
+
+# Function to toggle activation/deactivation of a Python virtual environment
+pshell() {
+    local venv_dirs=("venv" ".venv" "env" ".env")
+
+    if [ -n "$1" ]; then
+        venv_dirs+=("$1")
+    fi
+
+    if [[ "$VIRTUAL_ENV" != "" ]]; then
+        deactivate
+        echo "Deactivate Python $VIRTUAL_ENV"
+        return
+    fi
+
+    for dir in "${venv_dirs[@]}"; do
+        if [ -d "$dir" ]; then
+            source "$dir/bin/activate"
+
+            echo "Activated Python on $dir"
+            return
+        fi
+    done
+
+    echo "No virtual environment found in the specified directories."
+}
+
 # nvm settings
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+# [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-# uv
+# uv completations
 . "$HOME/.cargo/env"
+
