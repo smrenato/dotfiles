@@ -6,15 +6,19 @@ source "${ZINIT_HOME}/zinit.zsh"
 autoload -Uz _zinit
 (( ${+_comps} )) && _comps[zinit]=_zinit
 
+fpath+=~/.zfunc
+
+zinit wait lucid for \
+ atinit"ZINIT[COMPINIT_OPTS]=-C; zicompinit; zicdreplay" \
+    zdharma-continuum/fast-syntax-highlighting \
+ blockf \
+    zsh-users/zsh-completions \
+ atload"!_zsh_autosuggest_start" \
+    zsh-users/zsh-autosuggestions
 
 zinit light Aloxaf/fzf-tab
-zinit load zdharma-continuum/history-search-multi-word
-zinit light zdharma-continuum/fast-syntax-highlighting
-zinit light zsh-users/zsh-autosuggestions
-zinit light zsh-users/zsh-completions
 
 # history settings
-# HISTORY
 HISTFILE=~/.histfile
 HISTSIZE=1000000
 SAVEHIST=$HISTSIZE
@@ -123,8 +127,6 @@ get_idf() {
   fi
 }
 
-
-
 # Function to toggle activation/deactivation of a Python virtual environment
 pshell() {
     local venv_dirs=("venv" ".venv" "env" ".env")
@@ -158,7 +160,6 @@ export NVM_DIR="$HOME/.nvm"
 
 # uv completations
 . "$HOME/.cargo/env"
-
 
 #  miscellaneous
 export PATH="$HOME/.local/bin:$PATH"
