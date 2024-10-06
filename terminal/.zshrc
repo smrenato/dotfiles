@@ -92,6 +92,8 @@ zstyle ':fzf-tab:*' switch-group '<' '>'
 export BAT_THEME="Dracula"
 
 #alias
+alias py="python"
+alias ipy="ipython"
 alias icat="kitten icat"
 alias vim="nvim"
 alias cat="bat"
