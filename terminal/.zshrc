@@ -155,6 +155,24 @@ pshell() {
     echo "No virtual environment found in the specified directories."
 }
 
+tses() {
+    local session_name="$1"
+
+    if [ -z "$session_name" ]; then
+        if tmux list-sessions | grep -q "attached"; then
+            tmux detach-client
+        else
+            tmux attach-session -d || echo "No sessions available to attach."
+        fi
+    else
+        if tmux has-session -t "$session_name" 2>/dev/null; then
+            tmux attach-session -t "$session_name"
+        else
+            tmux new-session -s "$session_name"
+        fi
+    fi
+}
+
 # nvm settings
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
