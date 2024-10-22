@@ -1,12 +1,27 @@
 # Warning: This config does not include keys that have an unset value
 
 # $all is shorthand for $username$hostname$localip$shlvl$singularity$kubernetes$directory$vcsh$git_branch$git_commit$git_state$git_metrics$git_status$hg_branch$docker_context$package$cmake$cobol$dart$deno$dotnet$elixir$elm$erlang$golang$haskell$helm$java$julia$kotlin$lua$nim$nodejs$ocaml$perl$php$pulumi$purescript$python$rlang$red$ruby$rust$scala$swift$terraform$vlang$vagrant$zig$buf$nix_shell$conda$memory_usage$aws$gcloud$openstack$azure$env_var$crystal$custom$sudo$cmd_duration$line_break$jobs$battery$time$status$container$shell$character
-format = '$all'
+# format = '$all'
+
+format = """
+$username\
+$directory\
+$git_branch\
+$git_state\
+$git_status\
+$docker_context\
+$package\
+$python\
+$line_break\
+$character
+"""
+
 right_format = ''
 continuation_prompt = '[∙](bright-black) '
 scan_timeout = 30
-command_timeout = 500
+command_timeout = 1000
 add_newline = true
+
 
 [aws]
 format = 'on [$symbol($profile )(\($region\) )(\[$duration\])]($style)'
@@ -156,16 +171,16 @@ format = '[$path](bold #89dceb)[$read_only](bold yellow) '
 repo_root_format = '[$before_root_path]($style)[$repo_root]($repo_root_style)[$path]($style)[$read_only]($read_only_style) '
 style = 'bold underline'
 disabled = false
-read_only = ' 🔒'
+read_only = ' 󰌾'
 read_only_style = 'red'
-truncation_symbol = ''
+truncation_symbol = '«.. '
 home_symbol = '~'
 use_os_path_sep = true
 
 [directory.substitutions]
 
 [docker_context]
-symbol = '🐳 '
+symbol = ' '
 style = 'blue bold'
 format = 'via [$symbol$context]($style) '
 only_with_files = true
@@ -255,7 +270,7 @@ disabled = false
 
 [git_branch]
 format = 'on [$symbol$branch]($style)(:[$remote]($style)) '
-symbol = ' '
+symbol = ' '
 style = 'bold purple'
 truncation_length = 9223372036854775807
 truncation_symbol = '…'
@@ -295,12 +310,12 @@ disabled = false
 [git_status]
 format = '([\[$all_status$ahead_behind\]]($style) )'
 style = 'red bold'
-stashed = '\$'
+stashed = '☒'
 ahead = '⇡'
 behind = '⇣'
-up_to_date = ''
+up_to_date = '✔'
 diverged = '⇕'
-conflicted = '='
+conflicted = '≟'
 deleted = '✘'
 renamed = '»'
 modified = '!'
@@ -312,7 +327,7 @@ disabled = false
 [golang]
 format = 'via [$symbol($version )]($style)'
 version_format = 'v${raw}'
-symbol = '🐹 '
+symbol = ' '
 style = 'bold cyan'
 disabled = false
 detect_extensions = ['go']
@@ -329,7 +344,7 @@ detect_folders = ['Godeps']
 [haskell]
 format = 'via [$symbol($version )]($style)'
 version_format = 'v${raw}'
-symbol = 'λ '
+symbol = ' '
 style = 'bold purple'
 disabled = false
 detect_extensions = [
@@ -357,7 +372,7 @@ detect_files = [
 detect_folders = []
 
 [hg_branch]
-symbol = ' '
+symbol = ' '
 style = 'bold purple'
 format = 'on [$symbol$branch]($style) '
 truncation_length = 9223372036854775807
@@ -376,7 +391,7 @@ disabled = false
 format = 'via [$symbol($version )]($style)'
 version_format = 'v${raw}'
 style = 'red dimmed'
-symbol = '☕ '
+symbol = ' '
 detect_extensions = [
     'java',
     'class',
@@ -408,7 +423,7 @@ disabled = true
 [julia]
 format = 'via [$symbol($version )]($style)'
 version_format = 'v${raw}'
-symbol = 'ஃ '
+symbol = ' '
 style = 'bold purple'
 disabled = false
 detect_extensions = ['jl']
@@ -421,7 +436,7 @@ detect_folders = []
 [kotlin]
 format = 'via [$symbol($version )]($style)'
 version_format = 'v${raw}'
-symbol = '🅺 '
+symbol = ' '
 style = 'bold blue'
 kotlin_binary = 'kotlin'
 disabled = false
@@ -452,7 +467,7 @@ disabled = true
 [lua]
 format = 'via [$symbol($version )]($style)'
 version_format = 'v${raw}'
-symbol = '🌙 '
+symbol = ' '
 style = 'bold blue'
 lua_binary = 'lua'
 disabled = false
@@ -464,7 +479,7 @@ detect_folders = ['lua']
 threshold = 75
 format = 'via $symbol[$ram( | $swap)]($style) '
 style = 'white bold dimmed'
-symbol = '🐏 '
+symbol = '󰍛 '
 disabled = true
 
 [nim]
@@ -516,7 +531,7 @@ format = 'via [$symbol($version )(\($switch_indicator$switch_name\) )]($style)'
 version_format = 'v${raw}'
 global_switch_indicator = ''
 local_switch_indicator = '*'
-symbol = '🐫 '
+symbol = ' '
 style = 'bold yellow'
 disabled = false
 detect_extensions = [
@@ -546,7 +561,7 @@ disabled = false
 
 [package]
 format = 'is [$symbol$version]($style) '
-symbol = '📦 '
+symbol = '󰏗 '
 style = '208 bold'
 display_private = false
 disabled = false
@@ -555,7 +570,7 @@ version_format = 'v${raw}'
 [perl]
 format = 'via [$symbol($version )]($style)'
 version_format = 'v${raw}'
-symbol = '🐪 '
+symbol = ' '
 style = '149 bold'
 disabled = false
 detect_extensions = [
@@ -577,7 +592,7 @@ detect_folders = []
 [php]
 format = 'via [$symbol($version )]($style)'
 version_format = 'v${raw}'
-symbol = '🐘 '
+symbol = ' '
 style = '147 bold'
 disabled = false
 detect_extensions = ['php']
@@ -588,7 +603,7 @@ detect_files = [
 detect_folders = []
 
 [pulumi]
-format = 'via [$symbol($username@)$stack]($style) '
+format = 'via [$symbol($username )$stack]($style) '
 version_format = 'v${raw}'
 symbol = ' '
 style = 'bold 5'
@@ -615,7 +630,7 @@ python_binary = [
 format = 'via [${symbol}${pyenv_prefix}(${version} )(\($virtualenv\) )]($style)'
 version_format = 'v${raw}'
 style = 'yellow bold'
-symbol = '🐍 '
+symbol = ' '
 disabled = false
 detect_extensions = ['py']
 detect_files = [
@@ -646,7 +661,7 @@ detect_folders = []
 format = 'via [$symbol($version )]($style)'
 version_format = 'v${raw}'
 style = 'blue bold'
-symbol = '📐 '
+symbol = '󰟔 '
 disabled = false
 detect_extensions = [
     'R',
@@ -661,7 +676,7 @@ detect_folders = ['.Rproj.user']
 [ruby]
 format = 'via [$symbol($version )]($style)'
 version_format = 'v${raw}'
-symbol = '💎 '
+symbol = ' '
 style = 'bold red'
 disabled = false
 detect_extensions = ['rb']
@@ -678,7 +693,7 @@ detect_variables = [
 [rust]
 format = 'via [$symbol($version )]($style)'
 version_format = 'v${raw}'
-symbol = '🦀 '
+symbol = '󱘗 '
 style = 'bold red'
 disabled = false
 detect_extensions = ['rs']
@@ -690,7 +705,7 @@ format = 'via [$symbol($version )]($style)'
 version_format = 'v${raw}'
 disabled = false
 style = 'red bold'
-symbol = '🆂 '
+symbol = ' '
 detect_extensions = [
     'sbt',
     'scala',
@@ -736,10 +751,10 @@ disabled = false
 format = '[$symbol$status]($style) '
 symbol = '✖'
 success_symbol = ''
-not_executable_symbol = '🚫'
-not_found_symbol = '🔍'
-sigint_symbol = '🧱'
-signal_symbol = '⚡'
+not_executable_symbol = ' '
+not_found_symbol = ' '
+sigint_symbol = '󰟾 '
+signal_symbol = ' '
 style = 'bold red'
 map_symbol = false
 recognize_signal_code = true
@@ -750,7 +765,7 @@ disabled = true
 
 [sudo]
 format = '[as $symbol]($style)'
-symbol = '🧙 '
+symbol = '  '
 style = 'bold blue'
 allow_windows = false
 disabled = true
@@ -758,7 +773,7 @@ disabled = true
 [swift]
 format = 'via [$symbol($version )]($style)'
 version_format = 'v${raw}'
-symbol = '🐦 '
+symbol = ' '
 style = 'bold 202'
 disabled = false
 detect_extensions = ['swift']
@@ -768,7 +783,7 @@ detect_folders = []
 [terraform]
 format = 'via [$symbol$workspace]($style) '
 version_format = 'v${raw}'
-symbol = '💠 '
+symbol = '󱁢 '
 style = 'bold 105'
 disabled = false
 detect_extensions = [
@@ -788,7 +803,7 @@ utc_time_offset = 'local'
 time_range = '-'
 
 [username]
-format = '[╭─](#b4befe)[$user](#b4befe)[@](bold)'
+format = '[╭─](#b4befe)[$user ](#b4befe)'
 style_root = 'bold'
 style_user = 'bold'
 show_always = true
@@ -827,11 +842,61 @@ detect_folders = []
 [zig]
 format = 'via [$symbol($version )]($style)'
 version_format = 'v${raw}'
-symbol = '↯ '
+symbol = ' '
 style = 'bold yellow'
 disabled = false
 detect_extensions = ['zig']
 detect_files = []
 detect_folders = []
+
+[os]
+# format = "$name "
+style = "bold white"
+disabled = false
+
+[os.symbols]
+Alpaquita = " "
+Alpine = " "
+AlmaLinux = " "
+Amazon = " "
+Android = " "
+Arch = " "
+Artix = " "
+CentOS = " "
+Debian = " "
+DragonFly = " "
+Emscripten = " "
+EndeavourOS = " "
+Fedora = " "
+FreeBSD = " "
+Garuda = "󰛓 "
+Gentoo = " "
+HardenedBSD = "󰞌 "
+Illumos = "󰈸 "
+Kali = " "
+Linux = " "
+Mabox = " "
+Macos = " "
+Manjaro = " "
+Mariner = " "
+MidnightBSD = " "
+Mint = " "
+NetBSD = " "
+NixOS = " "
+OpenBSD = "󰈺 "
+openSUSE = " "
+OracleLinux = "󰌷 "
+Pop = " "
+Raspbian = " "
+Redhat = " "
+RedHatEnterprise = " "
+RockyLinux = " "
+Redox = "󰀘 "
+Solus = "󰠳 "
+SUSE = " "
+Ubuntu = " "
+Unknown = " "
+Void = " "
+Windows = "󰍲 "
 
 [custom]
