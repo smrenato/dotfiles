@@ -176,6 +176,11 @@ tmuxks() {
 # Requires https://github.com/caarlos0/timer to be installed.
 
 cycle_work_break (){
+  wt=$(($2 + $3))
+  total=$(($1 * wt))
+
+  echo "Total time on this session: ${total}m" | lolcat
+  sleep 3
 
   if [ -n "$1" ] && [ -n "$2" ] && [ -n "$3" ]; then
     for i in $(seq $1); do
@@ -183,7 +188,7 @@ cycle_work_break (){
     done
   else
     echo "Usage: cycle_work_break take 3 arguments"
-    echo "sessions, work and break"
+    echo "<sessions> <work> <break>"
   fi
 
 }
@@ -203,15 +208,14 @@ pomodoro () {
     echo -e "\a"
     
   else
-    echo "Usage: pomodoro <work> <break>"
+    echo "Usage: pomodoro <work><s,m,h> <break><s,m,h> "
     return
   fi
 
 
 }
 
-alias wpo="cycle_work_break"
-alias po="pomodoro"
+alias pomo="cycle_work_break"
 
 # nvm settings
 export NVM_DIR="$HOME/.nvm"
