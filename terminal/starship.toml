@@ -1,20 +1,8 @@
 # Warning: This config does not include keys that have an unset value
+# Require nerdfonts installed https://github.com/ryanoasis/nerd-fonts
 
 # $all is shorthand for $username$hostname$localip$shlvl$singularity$kubernetes$directory$vcsh$git_branch$git_commit$git_state$git_metrics$git_status$hg_branch$docker_context$package$cmake$cobol$dart$deno$dotnet$elixir$elm$erlang$golang$haskell$helm$java$julia$kotlin$lua$nim$nodejs$ocaml$perl$php$pulumi$purescript$python$rlang$red$ruby$rust$scala$swift$terraform$vlang$vagrant$zig$buf$nix_shell$conda$memory_usage$aws$gcloud$openstack$azure$env_var$crystal$custom$sudo$cmd_duration$line_break$jobs$battery$time$status$container$shell$character
-# format = '$all'
-
-format = """
-$username\
-$directory\
-$git_branch\
-$git_state\
-$git_status\
-$docker_context\
-$package\
-$python\
-$line_break\
-$character
-"""
+format = '$all'
 
 right_format = ''
 continuation_prompt = '[∙](bright-black) '
@@ -175,6 +163,7 @@ read_only = ' 󰌾'
 read_only_style = 'red'
 truncation_symbol = '«.. '
 home_symbol = '~'
+# home_symbol = ''
 use_os_path_sep = true
 
 [directory.substitutions]
@@ -313,7 +302,7 @@ style = 'red bold'
 stashed = '☒'
 ahead = '⇡'
 behind = '⇣'
-up_to_date = '✔'
+up_to_date = ''
 diverged = '⇕'
 conflicted = '≟'
 deleted = '✘'
@@ -803,7 +792,7 @@ utc_time_offset = 'local'
 time_range = '-'
 
 [username]
-format = '[╭─](#b4befe)[$user ](#b4befe)'
+format = '[╭─](#b4befe)[$user](#b4befe)[@](#b5befe)'
 style_root = 'bold'
 style_user = 'bold'
 show_always = true
@@ -850,9 +839,9 @@ detect_files = []
 detect_folders = []
 
 [os]
-# format = "$name "
+format = "$name "
 style = "bold white"
-disabled = false
+disabled = true 
 
 [os.symbols]
 Alpaquita = " "
