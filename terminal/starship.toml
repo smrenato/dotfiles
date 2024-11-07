@@ -64,7 +64,7 @@ disabled = false
 [cmake]
 format = 'via [$symbol($version )]($style)'
 version_format = 'v${raw}'
-symbol = '△ '
+symbol = '   '
 style = 'bold blue'
 disabled = false
 detect_extensions = []
@@ -161,7 +161,7 @@ style = 'bold underline'
 disabled = false
 read_only = ' 󰌾'
 read_only_style = 'red'
-truncation_symbol = '«.. '
+truncation_symbol = '«... '
 home_symbol = '~'
 # home_symbol = ''
 use_os_path_sep = true
@@ -262,7 +262,7 @@ format = 'on [$symbol$branch]($style)(:[$remote]($style)) '
 symbol = ' '
 style = 'bold purple'
 truncation_length = 9223372036854775807
-truncation_symbol = '…'
+truncation_symbol = '««'
 only_attached = false
 always_show_remote = false
 ignore_branches = []
@@ -839,9 +839,9 @@ detect_files = []
 detect_folders = []
 
 [os]
-format = "$name "
+format = "$name"
 style = "bold white"
-disabled = true 
+disabled = true
 
 [os.symbols]
 Alpaquita = " "
