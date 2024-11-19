@@ -17,6 +17,9 @@ zinit wait lucid for \
     zsh-users/zsh-autosuggestions
 
 zinit light Aloxaf/fzf-tab
+# vi mode
+# zinit ice depth=1
+# zinit light jeffreytse/zsh-vi-mode
 
 # history settings
 HISTFILE=~/.histfile
@@ -92,6 +95,9 @@ zstyle ':fzf-tab:*' switch-group '<' '>'
 export BAT_THEME="Dracula"
 
 #alias
+#
+alias knvim='NVIM_APPNAME="kickstart.nvim" nvim'
+alias pnvim='NVIM_APPNAME="smrenato.nvim" nvim'
 alias py="python"
 alias ipy="ipython"
 alias icat="kitten icat"
@@ -155,7 +161,7 @@ pshell() {
     echo "No virtual environment found in the specified directories."
 }
 
-tmuxks() {
+sestmux() {
     local session_name="$1"
 
     if [ -z "$session_name" ]; then
@@ -217,19 +223,9 @@ pomodoro () {
 
 alias pomo="cycle_work_break"
 
-# nvm settings
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-# [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
-# uv completations
-. "$HOME/.cargo/env"
-
-#  miscellaneous
-export PATH="$HOME/.local/bin:$PATH"
+#  path
+export PATH="$HOME/.yarn/bin/:$HOME/.local/bin:$PATH"
 
 # starship theme
 eval "$(starship init zsh)"
 
-
-alias knvim='NVIM_APPNAME="kickstart.nvim" nvim'

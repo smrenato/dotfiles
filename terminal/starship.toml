@@ -62,9 +62,9 @@ error_symbol = '[╰─](bold red)[×](bold red)'
 disabled = false
 
 [cmake]
-format = 'via [$symbol($version )]($style)'
+format = 'via [$name$symbol($version )]($style)'
 version_format = 'v${raw}'
-symbol = '   '
+symbol = ' CMake '
 style = 'bold blue'
 disabled = false
 detect_extensions = []
@@ -837,6 +837,10 @@ disabled = false
 detect_extensions = ['zig']
 detect_files = []
 detect_folders = []
+
+[c]
+symbol = ' '
+format = 'via [$symbol$name ($version )]($style)'
 
 [os]
 format = "$name"
