@@ -1,0 +1,77 @@
+// Zed keymap
+//
+// For information on binding keys, see the Zed
+// documentation: https://zed.dev/docs/key-bindings
+//
+// To see the default key bindings run `zed: open default keymap`
+// from the command palette.
+[
+  // Remap default
+
+  // Editor
+  {
+    "context": "Editor",
+    "bindings": {
+      // "j k": ["workspace::SendKeystrokes", "escape"]
+      "ctrl-y": "editor::ConfirmCompletion"
+    }
+  },
+  {
+    "context": "Editor && showing_code_actions",
+    "bindings": {
+      "ctrl-y": "editor::ConfirmCodeAction"
+    }
+  },
+
+  // Pane
+  {
+    "context": "Pane",
+    "bindings": {
+      "alt-ctrl-t": null
+    }
+  },
+  {
+    "context": "Pane",
+    "bindings": {
+      "ctrl-t ctrl-t": ["pane::CloseInactiveItems", { "close_pinned": false }]
+    }
+  },
+
+  // Vim mode
+  {
+    "context": "vim_mode == normal && !menu",
+    "bindings": {
+      "shift-y": ["workspace::SendKeystrokes", "y $"] // Use neovim's yank behavior: yank to end of line.
+    }
+  },
+
+  {
+    "context": "vim_mode == insert && !menu",
+    "bindings": {
+      // "j k": "vim::NormalBefore" // In insert mode, make jk escape to normal mode.
+      // "ctrl-j": "editor::NewlineBelow"
+      "ctrl-j": "editor::Newline"
+    }
+  },
+
+  {
+    "context": "VimControl && !menu && vim_mode != operator",
+    "bindings": {
+      "w": "vim::NextSubwordStart",
+      "b": "vim::PreviousSubwordStart",
+      "e": "vim::NextSubwordEnd",
+      "g e": "vim::PreviousSubwordEnd"
+    }
+  },
+
+  {
+    "context": "vim_operator == a || vim_operator == i || vim_operator == cs",
+    "bindings": {
+      // Traditional Vim behavior
+      "Q": "vim::AnyQuotes",
+
+      // mini.ai plugin behavior
+      "q": "vim::MiniQuotes"
+    }
+  }
+]

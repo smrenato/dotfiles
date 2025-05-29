@@ -6,19 +6,17 @@
 // To see all of Zed's default settings without changing your
 // custom settings, run `zed: open default settings` from the
 // command palette (cmd-shift-p / ctrl-shift-p)
-{
-  // "icon_theme": "Material Icon Theme",
 
-  // "active_pane_modifiers": {
-  //   "magnification": 1.8,
-  //   "border_size": 0.0,
-  //   "inactive_opacity": 1.0
-  // },
-  "icon_theme": "Catppuccin Mocha",
-  "ui_font_size": 15,
-  "buffer_font_size": 14,
-  "ui_font_family": "FiraCode Nerd Font",
-  "buffer_font_family": "FiraCode Nerd Font",
+{
+  // cursed AI
+  "features": { "edit_prediction_provider": "none" },
+
+  // Ui
+  "icon_theme": "Material Icon Theme",
+  "ui_font_size": 16,
+  "buffer_font_size": 15,
+  "ui_font_family": "JetBrainsMono Nerd Font",
+  "buffer_font_family": "JetBrainsMono Nerd Font",
   "buffer_font_weight": 500,
   "ui_font_weight": 400,
   "scrollbar": {
@@ -31,16 +29,51 @@
     "show": true,
     "show_nav_history_buttons": false
   },
-  // "preferred_line_length": 160,
   "tabs": {
     "file_icons": true,
-    "git_status": true
+    "git_status": true,
+    "show_diagnostics": "all"
+  },
+
+  "toolbar": {
+    "breadcrumbs": false,
+    "quick_actions": false,
+    "selections_menu": true,
+    "agent_review": true,
+    "code_actions": true
   },
 
   "gutter": {
     "line_numbers": true
   },
 
+  "terminal": {
+    "copy_on_select": true,
+    "font_family": "JetBrainsMono Nerd Font",
+    "font_features": {
+      "calt": true
+    },
+    "shell": {
+      "program": "fish"
+    },
+    "detect_venv": {
+      "on": {
+        // Default directories to search for virtual environments, relative
+        // to the current working directory. We recommend overriding this
+        // in your project's settings, rather than globally.
+        "directories": [".env", "env", ".venv", "venv"],
+        // Can also be `csh`, `fish`, and `nushell`
+        "activate_script": "fish"
+      }
+    },
+    "toolbar": {
+      "breadcrumbs": false
+    },
+    "dock": "right",
+    "default_width": 610
+  },
+
+  // Vim mode
   "vim_mode": true,
   "relative_line_numbers": true,
   "autosave": "on_focus_change",
@@ -49,7 +82,7 @@
   "theme": {
     "mode": "system",
     "light": "Catppuccin Macchiato",
-    "dark": "Catppuccin Mocha"
+    "dark": "Catppuccin Macchiato"
   },
 
   // Extensions
@@ -64,57 +97,72 @@
     "git-firefly": true
   },
 
-  // python ruff and lsp
+  // Language server
+  "inlay_hints": {
+    "enabled": true,
+    "show_type_hints": true,
+    "show_parameter_hints": true,
+    "show_other_hints": true
+  },
+
+  // // python ruff and lsp
   "languages": {
-    "languages": {
-      "Python": {
-        "language_servers": ["ruff"],
-        // Or, if there are other language servers you want to use with Python
-        // "language_servers": ["pyright", "ruff"]
-        "format_on_save": "on",
-        "formatter": [
-          {
-            "code_actions": {
-              "source.organizeImports.ruff": true,
-              "source.fixAll.ruff": true
-            }
-          },
-          {
-            "language_server": {
-              "name": "ruff"
-            }
+    "Python": {
+      // "language_servers": ["!pyright", "ruff"],
+      "language_servers": ["ruff", "pyright"], // "pylsp"],
+      "formatter": [
+        {
+          "language_server": {
+            "name": "ruff"
           }
-        ]
-      }
+        }
+      ]
     }
   },
+
   "lsp": {
     "ruff": {
       "initialization_options": {
         "settings": {
           // Ruff server settings goes here
           "configurationPreference": "filesystemFirst",
-          "exclude": ["**/tests/**"],
-          "lineLength": 80,
-
-          "configuration": {
-            "lint": {
-              "unfixable": ["F401"],
-              "extend-select": ["TID251"],
-              "flake8-tidy-imports": {
-                "banned-api": {
-                  "typing.TypedDict": {
-                    "msg": "Use `typing_extensions.TypedDict` instead"
-                  }
-                }
-              }
-            },
-            "format": {
-              "quote-style": "single"
-            }
+          "lineLength": 79,
+          "lint": {
+            "extendSelect": ["I"]
           }
+          //
         }
       }
     }
   }
+
+  // "lsp": {
+  //   "ruff": {
+  //     "initialization_options": {
+  //       "settings": {
+  //         // Ruff server settings goes here
+  //         "configurationPreference": "filesystemFirst",
+  //         "exclude": ["**/tests/**"],
+  //         "lineLength": 80,
+
+  //         "configuration": {
+  //           "lint": {
+  //             "unfixable": ["F401"],
+  //             "extend-select": ["TID251"],
+  //             "flake8-tidy-imports": {
+  //               "banned-api": {
+  //                 "typing.TypedDict": {
+  //                   "msg": "Use `typing_extensions.TypedDict` instead"
+  //                 }
+  //               }
+  //             }
+  //           },
+  //           "format": {
+  //             "quote-style": "single"
+  //           }
+  //         }
+  //       }
+  //     }
+  //   }
+  // }
 }
