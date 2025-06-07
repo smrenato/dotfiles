@@ -1,0 +1,57 @@
+#!/bin/bash
+
+USERNAME="smrenato"  # ← Replace with your GitHub username
+
+# Fetch all repositories including forks and archived
+repos=$(gh repo list "$USERNAME" --limit 1000 --json name,isArchived,isFork -q '.[]')
+
+echo "🔧 Renaming repositories to kebab-case..."
+echo "========================================="
+
+echo "$repos" | jq -c '.' | while read -r repo; do
+    name=$(echo "$repo" | jq -r '.name')
+    is_archived=$(echo "$repo" | jq -r '.isArchived')
+    is_fork=$(echo "$repo" | jq -r '.isFork')
+
+    # Convert to kebab-case
+    kebab_name=$(echo "$name" | \
+        sed -E 's/([a-z0-9])([A-Z])/\1-\2/g' | \
+        tr ' _' '-' | \
+        tr '[:upper:]' '[:lower:]')
+
+    # Skip if name is already kebab-case
+    if [ "$name" = "$kebab_name" ]; then
+        echo "✅ $name already uses kebab-case"
+        continue
+    fi
+
+    echo "🔁 $name → $kebab_name"
+    echo "    📦 Archived: $is_archived"
+    echo "    🍴 Forked:   $is_fork"
+
+    # Temporarily unarchive if needed
+    if [ "$is_archived" = "true" ]; then
+        echo "📤 Unarchiving $name..."
+        gh repo unarchive "$USERNAME/$name" -y
+
+        sleep 1
+    fi
+
+    # Rename the repository
+    echo "✏️  Renaming $name → $kebab_name..."
+    gh repo rename -R "$USERNAME/$name" "$kebab_name"
+
+    sleep 1
+
+    # Re-archive if it was previously archived
+    if [ "$is_archived" = "true" ]; then
+        echo "📦 Re-archiving $kebab_name..."
+        gh repo archive "$USERNAME/$kebab_name" -y
+        sleep 1
+    fi
+
+    echo "✅ Renamed $name → $kebab_name"
+    echo "-----------------------------------------"
+done
+
+echo "✅ All renaming complete."
