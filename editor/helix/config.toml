@@ -1,0 +1,50 @@
+theme = "catppuccin_macchiato"
+
+[editor]
+line-number = "relative"
+true-color = true
+mouse = true
+end-of-line-diagnostics = "error"
+
+[editor.inline-diagnostics]
+cursor-line = "warning" 
+
+[editor.lsp]
+display-inlay-hints = true
+snippets = true
+ 
+[editor.cursor-shape]
+insert = "bar"
+normal = "block"
+select = "block"
+
+[editor.file-picker]
+hidden = false
+
+[editor.statusline]
+left = ["mode", "spinner"]
+center = ["file-name"]
+right = ["diagnostics", "position-percentage", "selections", "position", "file-encoding", "file-line-ending", "file-type"]
+
+[editor.auto-pairs]
+'(' = ')'
+'{' = '}'
+'[' = ']'
+'"' = '"'
+'`' = '`'
+'<' = '>'
+
+[editor.indent-guides]
+render = true
+character = "╎" # Some characters that work well: "▏", "┆", "┊", "⸽"
+skip-levels = 1
+
+
+# keymaps
+[keys.normal."space"]
+i = ":toggle-option lsp.display-inlay-hints"
+
+# minor mode for cargo`+`
+[keys.normal."+"]
+m = ":run-shell-command make"
+c = { "t" = ":run-shell-command cargo test", "c" = ":run-shell-command cargo check"}

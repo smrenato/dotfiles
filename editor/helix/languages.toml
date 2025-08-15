@@ -1,0 +1,25 @@
+# Python
+[[language]]
+name = "python"
+language-servers = ["ruff", "basedpyright"]
+auto-format = true
+
+# Toml
+[[language]]
+name = "toml"
+language-servers = [ "taplo", "tombi" ]
+auto-format = true
+comment-token = "#"
+indent = { tab-width = 2, unit = "  " }
+
+[language-server.basedpyright.config]
+basedpyright.analysis.diagnosticMode = "openFilesOnly"
+
+[language-server.ruff.config.settings]
+configurationPreference = "filesystemFirst"
+
+[language-server.ruff.config.settings.format]
+quote-style = "single"
+preview = true
+organizeImports= false
+
