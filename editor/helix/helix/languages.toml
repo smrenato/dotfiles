@@ -1,0 +1,33 @@
+# Python
+[[language]]
+name = "python"
+language-servers = [
+  { name = "ruff", except-features = [
+    "diagnostics",
+  ] },
+  "pyrefly",
+]
+# language-servers = [
+#   {name = "ruff",  only-features= ["format", "code-action", ""]},
+#    "pyrefly"]
+formatter = { command = "ruff", args = ["format", "-"] }
+auto-format = true
+
+# Toml
+[[language]]
+name = "toml"
+language-servers = ["taplo", "tombi"]
+auto-format = true
+comment-token = "#"
+
+formatter = { command = "taplo", args = ["format", "-"] }
+indent = { tab-width = 2, unit = "  " }
+
+# ruff
+[language-server.ruff.config.settings]
+configurationPreference = "filesystemFirst"
+
+[language-server.ruff.config.settings.format]
+quote-style = "single"
+preview = true
+organizeImports = false
