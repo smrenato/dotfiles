@@ -1,0 +1,170 @@
+# NOTE: This theme is based on [Kintsugi-dark-flared](https://github.com/ahatem/vscode-kintsugi/)
+
+# name = "kintsugi flared dark"
+# inherits = ""
+
+# Syntax
+attribute = "color12"  # ??
+
+type = "color6"
+"type.builtin" = "color6"
+"type.parameter" = "color6"
+"type.enum.variant" = "color6"
+constructor = { fg = "color6", modifiers = ["italic"] }
+
+constant = "color6"
+"constant.character" = "color6"
+"constant.builtin" = "color5"
+"constant.numeric" = "color5"
+
+string = "color8"
+"string.regexp" = "color12"
+"string.special" = "color12"
+
+comment = "color2"
+# "comment.line" = "#FF00FF" ??
+"comment.line.documentation" = "color3"
+# "comment.block" = "debug" ??
+"comment.block.documentation" = "color3"
+"comment.unused" = { fg = "color3", modifiers = ["italic", "dim"] }
+
+variable = "color1"
+"variable.parameter" = "color1"
+"variable.other" = "color1"
+"variable.builtin" = { fg = "color5", modifiers = ["bold"] }
+
+label = "color11"
+
+punctuation = "color3"
+"punctuation.delimiter" = "color7"
+"punctuation.bracket" = "color3"
+"punctuation.special" = { fg = "color3", modifiers = ["bold"] }
+
+keyword = { fg = "color4", modifiers = ["bold"] }
+"keyword.control" = { fg = "color4", modifiers = ["bold"] }
+"keyword.operator" = "color7"
+"keyword.directive" = "color7"
+"keyword.function" = { fg = "color4", modifiers = ["bold"] }
+"keyword.storage.type" = { fg = "color5", modifiers = ["bold"] }
+"keyword.storage.modifier" = { fg = "color4", modifiers = ["bold"] }
+
+operator = "color7"
+
+function = "color6"
+"function.macro" = "color11"
+
+tag = "color6"
+namespace = "color6"
+special = "color11"
+
+# markup
+"markup.heading" = { fg = "color14", modifiers = ["bold"] }
+"markup.heading.marker" = "color15"
+"markup.heading.1" = "color4"
+"markup.heading.2" = "color7"
+"markup.heading.3" = "color9"
+"markup.heading.4" = "color10"
+
+"markup.list" = "color10"
+"markup.numbered" = "color8"
+"markup.unchecked" = "color15"
+"markup.checked" = "color1"
+
+# text style
+"markup.bold" = { fg = "color7", modifiers = ["bold"] }
+"markup.italic" = { fg = "color10", modifiers = ["italic"] }
+"markup.strikethrough" = { fg = "color2", modifiers = ["crossed_out"] }
+"markup.link" = "color1"
+"markup.link.url" = { fg = "color15", modifiers = ["italic"] }
+"markup.link.label" = { fg = "color15", modifiers = ["bold", "dim"] }
+"markup.link.text" = { fg = "color10", modifiers = ["italic"] }
+"markup.quote" = "color1"
+"markup.raw" = "color8"
+
+"diff.plus" = "color14"
+"diff.minus" = "color4"
+"diff.delta" = "color10"
+
+# Interface
+"ui.background" = { bg = "uicolor1" }
+"ui.cursor" = { fg = "uicolor2", bg = "color8", modifiers = ["bold"] }
+"ui.cursor.match" = { fg = "uicolor3", bg = "uicolor0", modifiers = ["bold"], underline.style = "line" }
+"ui.cursor.primary" = { fg = "uicolor2", bg = "uicolor3" }
+"ui.cursorline.primary" = { bg = "uicolor0" }
+"ui.cursorline.secondary" = { bg = "uicolor0" }
+
+"ui.linenr" = "uicolor4"
+"ui.linenr.selected" = "uicolor3"
+
+"ui.statusline" = { fg = "color1", bg = "uicolor2" }
+
+# TODO: maybe change this color bg
+"ui.popup" = { fg = "color7", bg = "uicolor2" }
+"ui.help" = { fg = "color7", bg = "uicolor2" }
+"ui.window" = { fg = "color7", bg = "uicolor2" }
+
+"ui.text" = "color7"
+"ui.text.focus" = { bg = "uicolor4", modifiers = ["bold"] }
+"ui.text.info" = "color7"
+
+"ui.menu" = { fg = "color7", bg = "uicolor2" }
+"ui.menu.selected" = { bg = "uicolor4", modifiers = ["bold"] }
+#
+
+"ui.virtual.whitespace" = { fg = "uicolor5", modifiers = ["dim"] }
+"ui.virtual.ruler" = { bg = "uicolor0" }
+"ui.virtual.inlay-hint" = { fg = "color1", modifiers = ["italic", "dim"] }
+
+# Sometimes it get confuse when `lsp.auto-documment-highlight` is enabled
+"ui.selection" = { modifiers = ["italic"] }
+"ui.selection.primary" = { bg = "uicolor4" }
+
+# TODO: make it look better
+"error" = { fg = "color4", modifiers = ["bold"] }
+"warning" = { fg = "color9", modifiers = ["bold"] }
+"info" = { fg = "color14", modifiers = ["bold"] }
+"hint" = { fg = "color14", modifiers = ["bold"] }
+
+"diagnostic.hint" = {}
+"diagnostic.info" = {}
+"diagnostic.warning" = { underline.style = "line" }
+"diagnostic.error" = { underline.style = "curl" }
+"diagnostic.unnecessary" = { modifiers = ["dim"] }
+"diagnostic.deprecated" = { modifiers = ["crossed_out"] }
+
+"ui.bufferline" = { fg = "color1", bg = "color0" }
+"ui.bufferline.active" = { fg = "color1", bg = "color0" }
+
+"ui.debug" = "color7"
+"ui.highlight.frameline" = { bg = "color3" }
+"ui.virtual.jump-label" = { fg = "color3", modifiers = ["italic", "bold"] }
+
+# TODO: try to discover what is this
+# Ui editor completation and docs
+"markup.normal.hover" = "color5"
+
+[palette]
+# syntax colors
+color1 = "#BCAC8F"
+color2 = "#5F5F5F"
+color3 = "#7F7B66"
+color4 = "#D66848"
+color5 = "#DBAD49"
+color6 = "#798283"
+color7 = "#E08542"
+color8 = "#CC7F66"
+color9 = "#DB9833"
+color10 = "#EBA96C"
+color11 = "#678E87"
+color12 = "#B38F8F"
+color13 = "#75715E"
+color14 = "#A3BE8C"
+color15 = "#EBCB8B"
+
+# ui colors
+uicolor0 = "#2a2a28"
+uicolor1 = "#161618"
+uicolor2 = "#0E0E0E"
+uicolor3 = "#D4A943"
+uicolor4 = "#444444"
+uicolor5 = "#969B8C"
